@@ -2,35 +2,31 @@
 #include <tchar.h>
 #include <iostream>
 
-#include "TStack.h"
+#include "Stack.h"
 
 using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	TStack<int, 10> stack;
+	YL::LStack<int> stack;
 
-	cout<<"====="<<stack.Size()<<"===="<<endl;
+	cout<<"Size:"<<stack.Size()<<endl;
 
 	int i = 1;
-	while(!stack.Full())
+	while(i<20)
 	{
-
 		stack.Push(i);
-		cout<<i<<endl;
+		cout<<"Size:"<<stack.Size()<<endl; 
 		++i;
 	}
 
-	cout<<"====="<<stack.Size()<<"===="<<endl;
-
-	while(!stack.Empty())	
+	while(!stack.IsEmpty())	
 	{
 		int a;
-		stack.Pop(a);
-		cout<<a<<endl;
+		a = stack.Top();
+		stack.Pop();
+		cout<<a<<"  "<<"Size:"<<stack.Size()<<endl; 
 	}
-
-	cout<<"====="<<stack.Size()<<"===="<<endl;
 
 	char input;
 	std::cin>>input;
