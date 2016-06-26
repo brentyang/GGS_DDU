@@ -8,6 +8,9 @@
 *			  当回调函数不需要参数时，可以在实例化模板类对象时使用任意参数，并在回调时将其传入，并不使用
 **/
 
+#ifndef TCALLBACK_H__
+#define TCALLBACK_H__
+
 #include <map>
 
 template<typename TPraram, typename TFunc>
@@ -46,3 +49,5 @@ private:
 
 	std::map<int, TFunc> m_data;
 };
+	
+#endif	//TCALLBACK_H__
