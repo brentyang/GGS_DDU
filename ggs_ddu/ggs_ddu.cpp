@@ -2,34 +2,36 @@
 #include <tchar.h>
 #include <iostream>
 
-#include "Stack.h"
+#include "TCallBack.h"
 
 using namespace std;
 
+void PrintFunc(int a)
+{
+	cout <<"Print func: " << a << endl;
+}
+
+void PrintParam(int a)
+{
+	cout <<"Print Param: "<< a << endl;
+}
+
+typedef void (*pPrintFunc)(int);
+
 int _tmain(int argc, _TCHAR* argv[])
 {
-	YL::LStack<int> stack;
+	TCallBack<int, pPrintFunc> stCallBack;
 
-	cout<<"Size:"<<stack.Size()<<endl;
+	//register
+	stCallBack.Register(1, PrintFunc);
+	stCallBack.Register(2, PrintParam);
 
-	int i = 1;
-	while(i<20)
-	{
-		stack.Push(i);
-		cout<<"Size:"<<stack.Size()<<endl; 
-		++i;
-	}
+	//call back
+	stCallBack.CallBack(1, 100);
+	stCallBack.CallBack(2, 200);
 
-	while(!stack.IsEmpty())	
-	{
-		int a;
-		a = stack.Top();
-		stack.Pop();
-		cout<<a<<"  "<<"Size:"<<stack.Size()<<endl; 
-	}
-
-	char input;
-	std::cin>>input;
+	char a;
+	cin >> a;
 
 	return 0;
 }
